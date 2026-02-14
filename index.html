@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>致我最爱的老婆</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:"微软雅黑";
+    color:white;
+}
+
+/* 背景照片 */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("love.jpg") no-repeat center center/cover;
+    filter:brightness(0.6);
+    animation:fadeIn 4s ease-in-out;
+    z-index:-1;
+}
+
+/* 黑色渐变层 */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top,rgba(0,0,0,0.7),rgba(0,0,0,0.2));
+    z-index:-1;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.container{
+    position:absolute;
+    top:18%;
+    width:100%;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    font-size:28px;
+}
+
+#text{
+    font-size:20px;
+    line-height:1.7;
+    margin-top:20px;
+    min-height:160px;
+}
+
+button{
+    padding:12px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    margin-top:20px;
+    cursor:pointer;
+    background:white;
+    color:#333;
+}
+
+.heart{
+    position:absolute;
+    color:rgba(255,255,255,0.8);
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="container">
+    <h1>❤️ 结婚一周年 ❤️</h1>
+    <div id="text"></div>
+    <button onclick="showLove()">点这里</button>
+    <div id="days" style="margin-top:20px;"></div>
+</div>
+
+<script>
+const message =
+"这一年，我们从恋人真正成为了彼此的家人。\n\
+谢谢你温柔的陪伴，\n\
+谢谢你让生活变得明亮。\n\
+\n\
+你纯净、你美好、你温柔可人。\n\
+这一生能娶你，是我最幸运的事情。\n\
+\n\
+未来的每一天，\n\
+我都会更加努力。\n\
+希望我们今后的每一天都是幸福顺利的。";
+
+let i=0;
+function typing(){
+    if(i<message.length){
+        document.getElementById("text").innerHTML+=
+        message.charAt(i)==="\n"?"<br>":message.charAt(i);
+        i++;
+        setTimeout(typing,70);
+    }
+}
+typing();
+
+// 结婚日期改这里
+let startDate=new Date("2025-04-02");
+let today=new Date();
+let days=Math.floor((today-startDate)/(1000*60*60*24));
+document.getElementById("days").innerHTML=
+"我们已经相伴了 "+days+" 天 ❤️";
+
+// 爱心动画
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+10+"px";
+    heart.style.animationDuration=Math.random()*3+3+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,400);
+
+function showLove(){
+    document.body.innerHTML=
+    "<div class='background'></div><div class='overlay'></div>\
+    <h1 style='margin-top:35%;font-size:30px;text-align:center;'>\
+    ❤️ 老婆，我爱你 ❤️<br><br>\
+    往后余生，坚定守护你。\
+    </h1>";
+}
+</script>
+
+</body>
+</html>
